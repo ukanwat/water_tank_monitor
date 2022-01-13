@@ -1,16 +1,14 @@
-# water_tank_monitor
+# Water Reminder App
 
-A new Flutter project.
+Android water reminder App made with Flutter using Android APIs such as DataStore and AlarmManager.
 
-## Getting Started
+Uses a native activity which is displayed when an alarm notification is triggered and the device is locked.
 
-This project is a starting point for a Flutter application.
+## Features
+- Flutter UI: Advanced UI and animations.
+- DataStore: To store data asynchronously using Kotlin coroutines and Flow.
+- AlarmManager: Schedule repeating alarms display notifications (also full screen notification on lock screen).
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+| ![Water summary](screenshots/pool.png) | ![Progress](screenshots/progress.png) | ![Settings](screenshots/settings.png) | ![Alarm](screenshots/alarm.png) |
+|----------|:-------------:|:-------------:|:-------------:|
