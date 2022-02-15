@@ -4,10 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomAppBar extends StatelessWidget {
   final Function openDrawer;
   final Widget trailing;
-  CustomAppBar({this.openDrawer,this.trailing});
+  CustomAppBar({this.openDrawer, this.trailing});
   @override
   Widget build(BuildContext context) {
-    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Row(
@@ -17,11 +16,15 @@ class CustomAppBar extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset('assets/icons/logo.png',height: 20,),
-              SizedBox(width: 12,),
-              //Text('Drinkable',style:  GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 17),)
+              Image.asset(
+                'assets/icons/logo.png',
+                height: 20,
+              ),
+              SizedBox(
+                width: 12,
+              ),
               Text(
-                'drinkable',
+                'monitor',
                 style: GoogleFonts.pacifico(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
@@ -30,7 +33,12 @@ class CustomAppBar extends StatelessWidget {
               )
             ],
           ),
-          trailing==null ? CircleAvatar(radius: 19,backgroundColor: Colors.transparent,) : trailing
+          trailing == null
+              ? CircleAvatar(
+                  radius: 19,
+                  backgroundColor: Colors.transparent,
+                )
+              : trailing
         ],
       ),
     );
@@ -50,12 +58,11 @@ class MenuButton extends StatelessWidget {
         height: 40,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey[300],
-            width: 1.1,
-          ),
-          borderRadius: BorderRadius.circular(4)
-        ),
+            border: Border.all(
+              color: Colors.grey[300],
+              width: 1.1,
+            ),
+            borderRadius: BorderRadius.circular(4)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -64,18 +71,16 @@ class MenuButton extends StatelessWidget {
               width: 11,
               height: 2,
               decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(2)
-              ),
+                  color: Colors.black, borderRadius: BorderRadius.circular(2)),
             ),
-            SizedBox(height: 4,),
+            SizedBox(
+              height: 4,
+            ),
             Container(
               width: 16,
               height: 2,
               decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(2)
-              ),
+                  color: Colors.black, borderRadius: BorderRadius.circular(2)),
             ),
           ],
         ),

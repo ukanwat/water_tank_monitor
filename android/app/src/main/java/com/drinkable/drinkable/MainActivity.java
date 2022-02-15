@@ -1,4 +1,4 @@
-package com.drinkable.drinkable;
+package com.ee344.project;
 
 import io.flutter.embedding.android.FlutterActivity;
 

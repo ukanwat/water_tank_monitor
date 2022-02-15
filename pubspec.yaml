@@ -1,4 +1,4 @@
-name: drinkable
+name: monitor
 description: A Flutter application which keeps track your water intake and remind you to drink water by sending notification.
 
 publish_to: 'none'

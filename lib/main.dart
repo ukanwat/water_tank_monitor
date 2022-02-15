@@ -16,19 +16,17 @@ import './screens/data_entry_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await SystemChrome.setPreferredOrientations(
-    <DeviceOrientation>[
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.portraitUp
-    ]
-  );
+  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp
+  ]);
 
-  FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
-  AndroidInitializationSettings android = AndroidInitializationSettings('notification_icon');
+  FlutterLocalNotificationsPlugin notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  AndroidInitializationSettings android =
+      AndroidInitializationSettings('notification_icon');
   IOSInitializationSettings ios = IOSInitializationSettings();
-  InitializationSettings settings = InitializationSettings(
-    android,ios
-  );
+  InitializationSettings settings = InitializationSettings(android, ios);
   await notificationsPlugin.initialize(
     settings,
   );
@@ -44,30 +42,30 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(
           create: (context) => AuthProvider(),
         ),
-        ChangeNotifierProxyProvider<AuthProvider,HomeProvider>(
+        ChangeNotifierProxyProvider<AuthProvider, HomeProvider>(
           create: (context) => HomeProvider(),
-          update: (context, authProvider, homeProvider) => homeProvider..update(authProvider.user),
+          update: (context, authProvider, homeProvider) =>
+              homeProvider..update(authProvider.user),
         ),
-        ChangeNotifierProxyProvider<AuthProvider,StatisticsProvider>(
+        ChangeNotifierProxyProvider<AuthProvider, StatisticsProvider>(
           create: (context) => StatisticsProvider(),
-          update: (context, authProvider, statisticsProvider) => statisticsProvider..update(authProvider.user),
+          update: (context, authProvider, statisticsProvider) =>
+              statisticsProvider..update(authProvider.user),
         )
       ],
       child: MaterialApp(
         //showPerformanceOverlay: true,
-        title: 'Drinkable',
+        title: 'Monitor',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          pageTransitionsTheme: PageTransitionsTheme(
-            builders: {
-              TargetPlatform.android : CupertinoPageTransitionsBuilder()
-            }
-          ),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder()
+          }),
         ),
         home: Root(),
         routes: {
-          DataEntryScreen.routeName : (ctx)=>DataEntryScreen(),
+          DataEntryScreen.routeName: (ctx) => DataEntryScreen(),
         },
       ),
     );
