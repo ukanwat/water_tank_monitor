@@ -1,4 +1,4 @@
-package com.ee344.project;
+package com.edlproject.android;
 
 import io.flutter.embedding.android.FlutterActivity;
 

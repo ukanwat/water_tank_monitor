@@ -6,7 +6,8 @@ class WaterEffect extends StatefulWidget {
   _WaterEffectState createState() => _WaterEffectState();
 }
 
-class _WaterEffectState extends State<WaterEffect> with SingleTickerProviderStateMixin {
+class _WaterEffectState extends State<WaterEffect>
+    with SingleTickerProviderStateMixin {
   AnimationController _animationController;
 
   @override
@@ -24,7 +25,7 @@ class _WaterEffectState extends State<WaterEffect> with SingleTickerProviderStat
     _animationController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -34,15 +35,19 @@ class _WaterEffectState extends State<WaterEffect> with SingleTickerProviderStat
           builder: (context, child) {
             List<Offset> points1 = [];
             List<Offset> points2 = [];
-            for(double i=0;i<=constraints.maxWidth;i++){
-              double val = 15*sin(2*pi*(_animationController.value + (i/constraints.maxWidth)));
-              double val2 = 15*sin(2*pi*(_animationController.value + (1-(i/constraints.maxWidth))));
-              points1.add(Offset(i,constraints.maxWidth-15+val));
-              points2.add(Offset(constraints.maxWidth - i,15+val2));
+            for (double i = 0; i <= constraints.maxWidth; i++) {
+              double val = 0;
+              double val2 = 15 *
+                  sin(2 *
+                      pi *
+                      (_animationController.value +
+                          (1 - (i / constraints.maxWidth))));
+              points1.add(Offset(i, constraints.maxWidth - 15 + val));
+              points2.add(Offset(constraints.maxWidth - i, 15 + val2));
             }
             return ClipPath(
-              clipper: WaveClipper(points1,points2),
-                child: Container(
+              clipper: WaveClipper(points1, points2),
+              child: Container(
                 constraints: constraints,
                 child: Stack(
                   alignment: Alignment.topCenter,
@@ -66,16 +71,17 @@ class _WaterEffectState extends State<WaterEffect> with SingleTickerProviderStat
 class WaveClipper extends CustomClipper<Path> {
   List<Offset> offsets1;
   List<Offset> offsets2;
-  WaveClipper(this.offsets1,this.offsets2);
+  WaveClipper(this.offsets1, this.offsets2);
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.lineTo(offsets1[0].dx,offsets1[0].dy);
+    path.lineTo(offsets1[0].dx, offsets1[0].dy);
     path.addPolygon(offsets1, false);
-    path.lineTo(offsets2[0].dx,offsets2[0].dy);
+    path.lineTo(offsets2[0].dx, offsets2[0].dy);
     path.addPolygon(offsets2, false);
-    path.lineTo(offsets2[offsets2.length-1].dx,offsets2[offsets2.length-1].dy);
-    path.lineTo(offsets1[0].dx,offsets1[0].dy);
+    path.lineTo(
+        offsets2[offsets2.length - 1].dx, offsets2[offsets2.length - 1].dy);
+    path.lineTo(offsets1[0].dx, offsets1[0].dy);
     path.close();
     return path;
   }

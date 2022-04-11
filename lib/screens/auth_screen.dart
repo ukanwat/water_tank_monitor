@@ -3,10 +3,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 // providers
 import '../providers/auth_provider.dart';
-
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
 // screens
 import '../screens/data_entry_screen.dart';
 
@@ -112,9 +113,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                     FlatButton(
                                       child: Text(
                                           'Continue as ${googleAccount.displayName}'),
-                                      onPressed: () {
-                                        Navigator.of(context).pushNamed(
-                                            DataEntryScreen.routeName);
+                                      onPressed: () async {
+                                        await Provider.of<AuthProvider>(context,
+                                                listen: false)
+                                            .signIn();
                                       },
                                     ),
                                     InkWell(

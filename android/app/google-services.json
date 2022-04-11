@@ -1,33 +1,50 @@
 {
   "project_info": {
-    "project_number": "573248553970",
-    "project_id": "ee344-project",
-    "storage_bucket": "ee344-project.appspot.com"
+    "project_number": "514350438093",
+    "firebase_url": "https://water-level-sensor-a81d8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "water-level-sensor-a81d8",
+    "storage_bucket": "water-level-sensor-a81d8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:573248553970:android:196172c9cafdad5ce4e16b",
+        "mobilesdk_app_id": "1:514350438093:android:355cedf293b73fb329bb84",
         "android_client_info": {
-          "package_name": "com.ee344.project"
+          "package_name": "com.edlproject.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "573248553970-ptqo074i02csnpsamblsf6b5vhvhv86n.apps.googleusercontent.com",
+          "client_id": "514350438093-3r3950rl29arnvajqph6uj45hb0thh9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edlproject.android",
+            "certificate_hash": "a5d1da901c201f7f0e25791b1e59058170079a5c"
+          }
+        },
+        {
+          "client_id": "514350438093-5co5hfc0khgapq301rmcp6pf8vnsptlq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edlproject.android",
+            "certificate_hash": "f8e8e6359041cc36c71b5cd58062734a6c674294"
+          }
+        },
+        {
+          "client_id": "514350438093-e2l35gjvnp346hg7bu4r5583dfkahq8f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAX9d8VW9cEweFVJ29tBP59_50tORJ7D4s"
+          "current_key": "AIzaSyB_hVAcpRRMcluhE64QEBYzFyO65OSVtr4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "573248553970-ptqo074i02csnpsamblsf6b5vhvhv86n.apps.googleusercontent.com",
+              "client_id": "514350438093-e2l35gjvnp346hg7bu4r5583dfkahq8f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

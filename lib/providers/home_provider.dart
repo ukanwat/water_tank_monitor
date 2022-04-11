@@ -55,7 +55,7 @@ class HomeProvider extends ChangeNotifier {
   AppUser get appUser => _appUser;
 
   String get dailyTarget {
-    int target = _appUser.dailyTarget;
+    int target = 1000;
     if (target < 1000) {
       return '$target mL';
     } else {
@@ -64,14 +64,14 @@ class HomeProvider extends ChangeNotifier {
   }
 
   int get leftAmount {
-    int target = _appUser.dailyTarget;
+    int target = 1000;
     int consumed = _weeklyData.amounts[_today.weekday.toString()].toInt();
     int left = target - consumed;
     return left;
   }
 
   double get targetReached {
-    int target = _appUser.dailyTarget;
+    int target = 1000;
     int consumed = _weeklyData.amounts[_today.weekday.toString()].toInt();
     return consumed / target;
   }
@@ -115,7 +115,7 @@ class HomeProvider extends ChangeNotifier {
           transaction.set(
               weekDocRef,
               {
-                'daily_target': _appUser.dailyTarget,
+                'daily_target': 1000,
                 'year': time.year,
                 'month': time.month,
                 'week': week,
@@ -170,10 +170,10 @@ class HomeProvider extends ChangeNotifier {
   Future<void> updateUser(AppUser appUser) async {
     try {
       await _firebaseFirestore.runTransaction((transaction) async {
-        transaction.update(_currentWeek, {'daily_target': appUser.dailyTarget});
+        transaction.update(_currentWeek, {'daily_target': 1000});
         transaction.update(_userRef, appUser.toDoc());
       });
-      await setDailyStartNotification(appUser.wakeUpTime, appUser.name);
+
       _appUser = appUser;
       notifyListeners();
     } catch (e) {

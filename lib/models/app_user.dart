@@ -6,54 +6,26 @@ class AppUser {
   String googleId;
   String email;
   String name;
-  String gender;
-  DateTime birthday;
-  double weight;
-  TimeOfDay wakeUpTime;
-  int dailyTarget;
+  List<String> tanks;
 
-  AppUser({
-    this.uid,
-    this.googleId,
-    this.email,
-    this.name,
-    this.gender,
-    this.birthday,
-    this.weight,
-    this.wakeUpTime,
-    this.dailyTarget
-  });
+  AppUser({this.uid, this.googleId, this.email, this.name, this.tanks});
 
-  factory AppUser.fromDoc(Map<String,dynamic> doc){
+  factory AppUser.fromDoc(Map<String, dynamic> doc) {
     return AppUser(
       uid: doc['uid'],
       googleId: doc['google_id'],
       email: doc['email'],
       name: doc['name'],
-      gender: doc['gender'],
-      birthday: (doc['birthday'] as Timestamp).toDate(),
-      weight: doc['weight'],
-      wakeUpTime: TimeOfDay(
-        hour: doc['wake_up_time']['hour'],
-        minute: doc['wake_up_time']['minute']
-      ),
-      dailyTarget: doc['daily_target']
+      tanks: doc['tanks'],
     );
   }
-  toDoc(){
+  toDoc() {
     return {
-      'uid' : this.uid,
-      'google_id' : this.googleId,
-      'email' : this.email,
-      'name' : this.name,
-      'gender' : this.gender,
-      'birthday' : Timestamp.fromDate(this.birthday),
-      'weight' : this.weight,
-      'wake_up_time' : {
-        'hour' : this.wakeUpTime.hour,
-        'minute' : this.wakeUpTime.minute
-      },
-      'daily_target' : dailyTarget
+      'uid': this.uid,
+      'google_id': this.googleId,
+      'email': this.email,
+      'name': this.name,
+      'tanks': this.tanks,
     };
   }
 }

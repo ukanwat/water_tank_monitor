@@ -16,50 +16,52 @@ class AuthProvider extends ChangeNotifier {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   GoogleSignInAccount get googleAcount => _googleSignIn.currentUser;
-  
+
   User get user => _firebaseAuth.currentUser;
 
   Future<bool> selectGoogleAcount() async {
     try {
       await _googleSignIn.signOut();
       GoogleSignInAccount googleAccount = await _googleSignIn.signIn();
-      QuerySnapshot querySnapshot = await _firestore.collection('users').where('google_id',isEqualTo: googleAccount.id).get();
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('users')
+          .where('google_id', isEqualTo: googleAccount.id)
+          .get();
       List<QueryDocumentSnapshot> docs = querySnapshot.docs;
-      if(docs.length==0){
+      if (docs.length == 0) {
         return true;
       }
       QueryDocumentSnapshot userDoc = docs[0];
-      Map<String,dynamic> data = userDoc.data();
+      Map<String, dynamic> data = userDoc.data();
       TimeOfDay wakeUpTime = TimeOfDay(
-        hour: data['wake_up_time']['hour'],
-        minute: data['wake_up_time']['minute']
-      );
-      await setDailyStartNotification(wakeUpTime,data['name']);
+          hour: data['wake_up_time']['hour'],
+          minute: data['wake_up_time']['minute']);
+      await setDailyStartNotification(wakeUpTime, data['name']);
       return false;
-    }catch(e){
+    } catch (e) {
       print(e);
       return true;
     }
   }
 
   Future<void> signIn() async {
-     try{
-      if(_googleSignIn.currentUser!=null){
-        GoogleSignInAuthentication _googleSignInAuthentication = await _googleSignIn.currentUser.authentication;
+    try {
+      if (_googleSignIn.currentUser != null) {
+        GoogleSignInAuthentication _googleSignInAuthentication =
+            await _googleSignIn.currentUser.authentication;
         OAuthCredential _oAuthCredential = GoogleAuthProvider.credential(
-          accessToken: _googleSignInAuthentication.accessToken,
-          idToken: _googleSignInAuthentication.idToken
-        );
+            accessToken: _googleSignInAuthentication.accessToken,
+            idToken: _googleSignInAuthentication.idToken);
         await _firebaseAuth.signInWithCredential(_oAuthCredential);
         notifyListeners();
       }
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
 
-  Future<void> signUp(String gender,DateTime birthday,double weight,TimeOfDay time,int water) async {
-    try{
+  Future<void> signUp(List<String> tanks) async {
+    try {
       await signIn();
       User user = _firebaseAuth.currentUser;
       DocumentReference userRef = _firestore.collection('users').doc(user.uid);
@@ -68,20 +70,14 @@ class AuthProvider extends ChangeNotifier {
         googleId: _googleSignIn.currentUser.id,
         email: user.email,
         name: user.displayName,
-        gender: gender,
-        birthday: birthday,
-        weight: weight,
-        wakeUpTime: time,
-        dailyTarget: water
       ).toDoc());
-      await setDailyStartNotification(time,user.displayName);
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       print(e);
     }
   }
 
-  void clearGoogleAccount()async{
+  void clearGoogleAccount() async {
     await _googleSignIn.signOut();
     notifyListeners();
   }
